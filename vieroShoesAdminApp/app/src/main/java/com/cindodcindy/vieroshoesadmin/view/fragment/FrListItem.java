@@ -3,12 +3,19 @@ package com.cindodcindy.vieroshoesadmin.view.fragment;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.cindodcindy.vieroshoesadmin.R;
+import com.cindodcindy.vieroshoesadmin.view.adapter.AdapterHome;
+import com.cindodcindy.vieroshoesadmin.view.model.ModelForItem;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -57,10 +64,40 @@ public class FrListItem extends Fragment {
         }
     }
 
+    private List<ModelForItem> modelForItems ;
+    private RecyclerView recyclerView;
+    private AdapterHome adapterHome;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fr_list_item, container, false);
+         View view = inflater.inflate(R.layout.fragment_fr_list_item, container, false);
+
+        recyclerView =view.findViewById(R.id.rv_home_item);
+        // recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false));
+
+        // LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        // GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(),3);
+        //recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        //
+
+
+        modelForItems = new ArrayList<>();
+        modelForItems.add(new ModelForItem("Viero White Grey"));
+        modelForItems.add(new ModelForItem("Viero White Grey"));
+        modelForItems.add(new ModelForItem("Viero White Grey"));
+        modelForItems.add(new ModelForItem("Viero White Grey"));
+        modelForItems.add(new ModelForItem("Viero White Grey"));
+
+
+        adapterHome= new AdapterHome(getActivity(),modelForItems);
+        recyclerView.setAdapter(adapterHome);
+
+
+        return view;
     }
 }

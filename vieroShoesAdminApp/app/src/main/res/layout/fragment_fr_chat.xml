@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".view.fragment.FrChat">
-
+<!--
     <LinearLayout
         android:background="@drawable/chat_illustration"
         android:layout_width="match_parent"
@@ -13,6 +13,7 @@
         android:orientation="vertical">
 
     </LinearLayout>
+    -->
 
     <ScrollView
         android:layout_width="match_parent"
@@ -32,6 +33,7 @@
                 android:orientation="vertical">
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_admin"
                     android:layout_margin="2dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -50,6 +52,7 @@
                 android:orientation="vertical">
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_cst"
                     android:layout_gravity="right"
                     android:layout_margin="2dp"
                     android:layout_width="match_parent"

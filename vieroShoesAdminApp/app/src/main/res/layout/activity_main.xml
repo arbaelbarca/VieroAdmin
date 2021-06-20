@@ -10,12 +10,12 @@
     tools:context=".MainActivity">
 
     <de.hdodenhof.circleimageview.CircleImageView
-    android:id="@+id/profile_image"
-    android:layout_width="100dp"
-    android:layout_height="100dp"
-    android:src="@drawable/viero_logo"
-    app:civ_border_color="#2196F3"
-    app:civ_border_width="2dp" />
+        android:id="@+id/profile_image"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/viero_asset_dua"
+        app:civ_border_color="#FFC107"
+        app:civ_border_width="2dp" />
 
 
     <TextView
@@ -25,11 +25,10 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:text="Viero Shoes Admin"
-        android:textColor="#5B6ABA"
+        android:textColor="#009688"
         android:textSize="15dp"
         android:textStyle="normal">
 
     </TextView>
-
 
 </LinearLayout>
