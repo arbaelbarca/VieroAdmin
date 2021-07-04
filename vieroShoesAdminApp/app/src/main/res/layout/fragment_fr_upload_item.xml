@@ -27,7 +27,7 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/profile_image"
+                android:id="@+id/iv_up_sepatu_image"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:src="@drawable/sepatu_satu"
@@ -104,6 +104,7 @@
 
 
                         <EditText
+                            android:id="@+id/et_up_nama_sepatu"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
@@ -125,6 +126,7 @@
                         </TextView>
 
                         <EditText
+                            android:id="@+id/et_up_uk_sepatu"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
@@ -147,6 +149,7 @@
                         </TextView>
 
                         <EditText
+                            android:id="@+id/et_up_harga_sepatu"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
@@ -168,6 +171,7 @@
                         </TextView>
 
                         <EditText
+                            android:id="@+id/et_up_lokasi_sepatu"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
@@ -180,12 +184,15 @@
 
 
                         <Button
+                            android:id="@+id/btn_up_btn_sepatu"
                             android:textColor="#676666"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Upload">
 
                         </Button>
+
+
                     </LinearLayout>
 
 

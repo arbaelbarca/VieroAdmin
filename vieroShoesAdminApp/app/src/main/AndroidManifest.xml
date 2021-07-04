@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.VieroShoesAdmin">
-        <activity android:name=".view.BottomNavAdmin"></activity>
+        <activity android:name=".view.UploadImageActivity"></activity>
+        <activity android:name=".view.BottomNavAdmin" />
         <activity android:name=".view.Login" />
         <activity android:name=".MainActivity">
             <intent-filter>
