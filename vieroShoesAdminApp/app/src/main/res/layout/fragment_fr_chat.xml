@@ -62,6 +62,7 @@
 
             </LinearLayout>
             <EditText
+                android:id="@+id/et_chat_admin"
                 android:padding="10dp"
                 android:drawableRight="@drawable/ic_baseline_send_24"
                 android:layout_margin="5dp"
