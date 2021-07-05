@@ -1,9 +1,210 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:gravity="center"
     tools:context=".view.UploadImageActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.cardview.widget.CardView
+        android:background="@color/cardview_shadow_start_color"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="2dp"
+        app:cardCornerRadius="2dp"
+        app:cardUseCompatPadding="true"
+        android:layout_margin="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_up_sepatu_image"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:src="@drawable/sepatu_satu"
+                />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                app:cardCornerRadius="2dp"
+                app:cardElevation="2dp"
+                app:cardUseCompatPadding="true">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/cardview_shadow_end_color"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+
+
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+
+
+                        <TextView
+                            android:background="#818183"
+                            android:layout_width="match_parent"
+                            android:layout_height="5dp"
+                            android:layout_margin="5dp"
+
+                            >
+
+                        </TextView>
+
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:text="Data Sepatu"
+                            android:textColor="#009688"
+                            android:gravity="center"
+                            android:textSize="15dp"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:text="Nama Sepatu"
+                            android:textColor="#009688"
+                            android:textSize="12dp"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+
+                        <EditText
+                            android:id="@+id/et_up_nama_sepatu"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:textColor="#009688"
+                            android:textSize="12dp"
+                            android:textStyle="bold">
+
+                        </EditText>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:text="Ukuran Sepatu"
+                            android:textColor="#009688"
+                            android:textSize="12dp"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+                        <EditText
+                            android:id="@+id/et_up_uk_sepatu"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:textColor="#009688"
+                            android:textSize="12dp"
+                            android:textStyle="bold">
+
+                        </EditText>
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:text="Harga Sepatu"
+                            android:textColor="#009688"
+                            android:textSize="12dp"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+                        <EditText
+                            android:id="@+id/et_up_harga_sepatu"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:textColor="#009688"
+                            android:textSize="12dp"
+                            android:textStyle="bold">
+
+                        </EditText>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:text="Lokasi Toko Viero Shoes"
+                            android:textColor="#009688"
+                            android:textSize="12dp"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+                        <EditText
+                            android:id="@+id/et_up_lokasi_sepatu"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:textColor="#5B6ABA"
+                            android:textSize="12dp"
+                            android:textStyle="bold">
+
+                        </EditText>
+
+
+
+                        <Button
+                            android:id="@+id/btn_up_btn_sepatu"
+                            android:textColor="#676666"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Upload">
+
+                        </Button>
+
+
+                    </LinearLayout>
+
+
+
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+
+
+
+</LinearLayout>
