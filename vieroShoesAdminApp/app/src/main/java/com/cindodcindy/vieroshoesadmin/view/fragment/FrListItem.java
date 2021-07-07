@@ -13,6 +13,12 @@ import android.view.ViewGroup;
 import com.cindodcindy.vieroshoesadmin.R;
 import com.cindodcindy.vieroshoesadmin.view.adapter.AdapterHome;
 import com.cindodcindy.vieroshoesadmin.view.model.ModelForItem;
+import com.cindodcindy.vieroshoesadmin.view.model.StockData;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,9 +70,10 @@ public class FrListItem extends Fragment {
         }
     }
 
-    private List<ModelForItem> modelForItems ;
+    private List<StockData> stockData ;
     private RecyclerView recyclerView;
     private AdapterHome adapterHome;
+    private DatabaseReference db;
 
 
     @Override
@@ -74,8 +81,8 @@ public class FrListItem extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
          View view = inflater.inflate(R.layout.fragment_fr_list_item, container, false);
+/*
 
-        recyclerView =view.findViewById(R.id.rv_home_item);
         // recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false));
 
         // LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
@@ -97,6 +104,41 @@ public class FrListItem extends Fragment {
         adapterHome= new AdapterHome(getActivity(),modelForItems);
         recyclerView.setAdapter(adapterHome);
 
+
+ */
+
+        recyclerView =view.findViewById(R.id.rv_home_item);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        stockData=new ArrayList<>();
+        /*
+        selectbtn=(TextView)findViewById(R.id.select_btn);
+        selectbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,UploadImage.class));
+                finish();
+            }
+        });
+
+         */
+        db= FirebaseDatabase.getInstance().getReference("Uploads");
+        db.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot post : dataSnapshot.getChildren()){
+                    StockData stockDatas=post.getValue(StockData.class);
+                    stockData.add(stockDatas);
+                }
+                adapterHome=new AdapterHome(getActivity(),stockData);
+                recyclerView.setAdapter(adapterHome);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         return view;
     }

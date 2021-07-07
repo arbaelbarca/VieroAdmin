@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.cindodcindy.vieroshoesadmin.R;
 import com.cindodcindy.vieroshoesadmin.view.model.ModelForItem;
+import com.cindodcindy.vieroshoesadmin.view.model.StockData;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -20,11 +22,11 @@ public class AdapterHome extends RecyclerView.Adapter<AdapterHome.HomeChild> {
 
     public Context context;
 
-    public List<ModelForItem> modelForItems;
+    public List<StockData> stockData;
 
-    public AdapterHome(Context context, List<ModelForItem> modelForItems){
+    public AdapterHome(Context context, List<StockData> stockData){
         this.context=context;
-        this.modelForItems=modelForItems;
+        this.stockData=stockData;
     }
 
     @Override
@@ -39,8 +41,11 @@ public class AdapterHome extends RecyclerView.Adapter<AdapterHome.HomeChild> {
 
     @Override
     public void onBindViewHolder( HomeChild holder, int position) {
-        final ModelForItem modelForItem = modelForItems.get(position);
-        holder.textView_nama_aitem.setText(modelForItems.get(position).getItem_satu());
+        final StockData stockDatas = stockData.get(position);
+        holder.textView_nama_aitem.setText(stockData.get(position).getNamaStock());
+        Picasso.with(context)
+                .load(stockDatas.getmImgUrl())
+                .into(holder.imageView_stockData);
 
 
 
@@ -48,16 +53,18 @@ public class AdapterHome extends RecyclerView.Adapter<AdapterHome.HomeChild> {
 
     @Override
     public int getItemCount() {
-        return modelForItems.size();
+        return stockData.size();
     }
 
     public class HomeChild extends RecyclerView.ViewHolder{
        private TextView textView_nama_aitem;
+       private ImageView imageView_stockData;
 
 
         public HomeChild( View itemView) {
             super(itemView);
             textView_nama_aitem=itemView.findViewById(R.id.tv_nama_barang);
+            imageView_stockData=itemView.findViewById(R.id.iv_stock_data);
 
                    }
     }
