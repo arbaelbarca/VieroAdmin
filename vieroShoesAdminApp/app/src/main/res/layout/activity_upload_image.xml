@@ -95,6 +95,31 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
+                            android:text="Nama Image"
+                            android:textColor="#009688"
+                            android:textSize="12dp"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+
+                        <EditText
+                            android:id="@+id/et_up_nama_image"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:textColor="#009688"
+                            android:textSize="12dp"
+                            android:textStyle="bold">
+
+                        </EditText>
+
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
                             android:text="Nama Sepatu"
                             android:textColor="#009688"
                             android:textSize="12dp"
