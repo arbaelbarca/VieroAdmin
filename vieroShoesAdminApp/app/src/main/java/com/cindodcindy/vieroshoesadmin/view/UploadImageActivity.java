@@ -149,7 +149,7 @@ public class UploadImageActivity extends AppCompatActivity {
                             StockData list_data=new StockData(editText_nama.getText().toString(), editText_ukuran.getText().toString(), editText_harga.getText().toString(),editText_lokasi.getText().toString(),editText_nama_image.getText().toString().trim(),taskSnapshot.getUploadSessionUri().toString());
                             String uploadid=mdataref.push().getKey();
                             mdataref.child(uploadid).setValue(list_data);
-                            startActivity(new Intent(UploadImageActivity.this,ShowStockActivity.class));
+                            startActivity(new Intent(UploadImageActivity.this,BottomNavAdmin.class));
                             finish();
                         }
                     }).addOnFailureListener(new OnFailureListener() {
