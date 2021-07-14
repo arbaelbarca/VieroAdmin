@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.cindodcindy.vieroshoesadmin.view.Login;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.appcheck.FirebaseAppCheck;
+import com.google.firebase.appcheck.safetynet.SafetyNetAppCheckProviderFactory;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,5 +32,10 @@ public class MainActivity extends AppCompatActivity {
 
             }
         },waktu_loading);
+
+        FirebaseApp.initializeApp(MainActivity.this);
+        FirebaseAppCheck firebaseAppCheck = FirebaseAppCheck.getInstance();
+        firebaseAppCheck.installAppCheckProviderFactory(
+                SafetyNetAppCheckProviderFactory.getInstance());
     }
 }

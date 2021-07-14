@@ -91,16 +91,6 @@
 
                         </TextView>
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
-                            android:text="Nama Image"
-                            android:textColor="#009688"
-                            android:textSize="12dp"
-                            android:textStyle="bold">
-
-                        </TextView>
 
 
                         <EditText

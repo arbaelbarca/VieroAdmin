@@ -7,18 +7,14 @@ public class StockData {
     private String hargaStock;
     private String lokasiStock;
     private String mImgUrl;
-    private String mName;
 
-    public StockData(String namaStock, String ukuranStock, String hargaStock, String lokasiStock,String imgUrl, String name){
-        if (name.trim().equals("")){
-            name="No Name";
-        }
-        this.mName=name;
-        this.mImgUrl=imgUrl;
+    public StockData(String namaStock, String ukuranStock, String hargaStock, String lokasiStock,String imgUrl){
         this.namaStock=namaStock;
         this.ukuranStock=ukuranStock;
         this.hargaStock=hargaStock;
         this.lokasiStock=lokasiStock;
+        this.mImgUrl=imgUrl;
+
     }
 
     public String getNamaStock() {
@@ -61,11 +57,5 @@ public class StockData {
         this.mImgUrl = mImgUrl;
     }
 
-    public String getmName() {
-        return mName;
-    }
 
-    public void setmName(String mName) {
-        this.mName = mName;
-    }
 }

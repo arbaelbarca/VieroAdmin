@@ -1,15 +1,18 @@
 package com.cindodcindy.vieroshoesadmin.view;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -33,14 +36,16 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.Locale;
 import java.util.UUID;
 
 public class UploadImageActivity extends AppCompatActivity {
 
    // private static final java.util.UUID UUID = ;
     private ImageView imageView_upload_sepatu;
-    private EditText editText_nama, editText_ukuran, editText_harga, editText_lokasi, editText_nama_image;
+    private EditText editText_nama, editText_ukuran, editText_harga, editText_lokasi;
     private Button button_upload_image;
 
 
@@ -56,6 +61,10 @@ public class UploadImageActivity extends AppCompatActivity {
 
 
 
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,13 +76,16 @@ public class UploadImageActivity extends AppCompatActivity {
         editText_ukuran=findViewById(R.id.et_up_uk_sepatu);
         editText_harga=findViewById(R.id.et_up_harga_sepatu);
         editText_lokasi=findViewById(R.id.et_up_lokasi_sepatu);
-        editText_nama_image=findViewById(R.id.et_up_nama_image);
         button_upload_image=findViewById(R.id.btn_up_btn_sepatu);
 
         //inisialisasi difrent example
 
         mstorageref= FirebaseStorage.getInstance().getReference("Uploads");
         mdataref= FirebaseDatabase.getInstance().getReference("Uploads");
+
+
+
+
 
 
 
@@ -90,6 +102,15 @@ public class UploadImageActivity extends AppCompatActivity {
             public void onClick(View v) {
                 ActivityCompat.requestPermissions(UploadImageActivity.this,new String[] {Manifest.permission.READ_EXTERNAL_STORAGE},IMAGE_REQUEST_CODE);
 
+            }
+        });
+
+        editText_lokasi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String uri = String.format(Locale.ENGLISH, "http://maps.google.com/maps?q=loc:%f,%f");
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+                startActivity(intent);
             }
         });
 
@@ -121,7 +142,9 @@ public class UploadImageActivity extends AppCompatActivity {
 
         if (requestCode == IMAGE_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
             mimguri = data.getData();
-            Picasso.with(this).load(mimguri).into(imageView_upload_sepatu);
+            //Picasso.with(this).load(mimguri).into(imageView_upload_sepatu);
+            Picasso.get().load(mimguri).into(imageView_upload_sepatu);
+
         }
     }
     private String getFileExtensoin (Uri uri){
@@ -146,7 +169,7 @@ public class UploadImageActivity extends AppCompatActivity {
                                 }
                             },5000);
                             Toast.makeText(UploadImageActivity.this,"Upload SuccsessFul",Toast.LENGTH_SHORT).show();
-                            StockData list_data=new StockData(editText_nama.getText().toString(), editText_ukuran.getText().toString(), editText_harga.getText().toString(),editText_lokasi.getText().toString(),editText_nama_image.getText().toString().trim(),taskSnapshot.getUploadSessionUri().toString());
+                            StockData list_data=new StockData(editText_nama.getText().toString(), editText_ukuran.getText().toString(), editText_harga.getText().toString(),editText_lokasi.getText().toString(),taskSnapshot.getUploadSessionUri().toString());
                             String uploadid=mdataref.push().getKey();
                             mdataref.child(uploadid).setValue(list_data);
                             startActivity(new Intent(UploadImageActivity.this,BottomNavAdmin.class));
@@ -169,5 +192,7 @@ public class UploadImageActivity extends AppCompatActivity {
         }
 
     }
+
+
 
 }

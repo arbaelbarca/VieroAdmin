@@ -1,11 +1,13 @@
 package com.cindodcindy.vieroshoesadmin.view.fragment;
 
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,11 +16,15 @@ import com.cindodcindy.vieroshoesadmin.R;
 import com.cindodcindy.vieroshoesadmin.view.adapter.AdapterHome;
 import com.cindodcindy.vieroshoesadmin.view.model.ModelForItem;
 import com.cindodcindy.vieroshoesadmin.view.model.StockData;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.ListResult;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,6 +81,9 @@ public class FrListItem extends Fragment {
     private AdapterHome adapterHome;
     private DatabaseReference db;
 
+    StorageReference root;
+    ArrayList<String> imagelist;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -106,12 +115,24 @@ public class FrListItem extends Fragment {
 
 
  */
+        /*
 
         recyclerView =view.findViewById(R.id.rv_home_item);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
         stockData=new ArrayList<>();
-        /*
+
+         */
+
+
+        imagelist=new ArrayList<>();
+         recyclerView = view.findViewById(R.id.rv_home_item);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        recyclerView.setLayoutManager(linearLayoutManager);
+
+     //   stockData= new ArrayList<>();
+
+      /*
         selectbtn=(TextView)findViewById(R.id.select_btn);
         selectbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,6 +143,8 @@ public class FrListItem extends Fragment {
         });
 
          */
+
+        /*
         db= FirebaseDatabase.getInstance().getReference("Uploads");
         db.addValueEventListener(new ValueEventListener() {
             @Override
@@ -130,13 +153,41 @@ public class FrListItem extends Fragment {
                     StockData stockDatas=post.getValue(StockData.class);
                     stockData.add(stockDatas);
                 }
-                adapterHome=new AdapterHome(getActivity(),stockData);
+               // adapterHome=new AdapterHome(getActivity(),stockData);
+                //recyclerView.setAdapter(adapterHome);
+
+                adapterHome = new AdapterHome( getContext(),stockData);
                 recyclerView.setAdapter(adapterHome);
+
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
+            }
+        });
+
+         */
+
+        StorageReference listRef = FirebaseStorage.getInstance().getReference().child("Uploads");
+        listRef.listAll().addOnSuccessListener(new OnSuccessListener<ListResult>() {
+            @Override
+            public void onSuccess(ListResult listResult) {
+                for(StorageReference file:listResult.getItems()){
+                    file.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            imagelist.add(uri.toString());
+                            Log.e("Itemvalue",uri.toString());
+                        }
+                    }).addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            recyclerView.setAdapter(adapterHome);
+                           // progressBar.setVisibility(View.GONE);
+                        }
+                    });
+                }
             }
         });
 
