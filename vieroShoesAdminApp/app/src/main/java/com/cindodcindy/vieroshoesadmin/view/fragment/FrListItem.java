@@ -12,15 +12,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.cindodcindy.vieroshoesadmin.MainActivity;
 import com.cindodcindy.vieroshoesadmin.R;
 import com.cindodcindy.vieroshoesadmin.view.adapter.AdapterHome;
 import com.cindodcindy.vieroshoesadmin.view.model.ModelForItem;
 import com.cindodcindy.vieroshoesadmin.view.model.StockData;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.appcheck.FirebaseAppCheck;
+import com.google.firebase.appcheck.safetynet.SafetyNetAppCheckProviderFactory;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Logger;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.ListResult;
@@ -90,6 +95,17 @@ public class FrListItem extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
          View view = inflater.inflate(R.layout.fragment_fr_list_item, container, false);
+
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        //FirebaseApp.initializeApp(getContext());
+
+        FirebaseApp.initializeApp(getContext());
+        FirebaseAppCheck firebaseAppCheck = FirebaseAppCheck.getInstance();
+        firebaseAppCheck.installAppCheckProviderFactory(
+                SafetyNetAppCheckProviderFactory.getInstance());
+
+
+
 /*
 
         // recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false));
@@ -191,6 +207,11 @@ public class FrListItem extends Fragment {
             }
         });
 
+        //firebaseDatabase.setLogLevel(Logger.Level.DEBUG);
+
+
         return view;
     }
+
+
 }

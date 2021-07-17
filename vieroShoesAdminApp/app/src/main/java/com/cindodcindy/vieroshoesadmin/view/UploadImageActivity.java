@@ -17,6 +17,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
@@ -28,6 +29,9 @@ import com.cindodcindy.vieroshoesadmin.R;
 import com.cindodcindy.vieroshoesadmin.view.model.StockData;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -40,6 +44,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Locale;
 import java.util.UUID;
+
+import static android.content.ContentValues.TAG;
 
 public class UploadImageActivity extends AppCompatActivity {
 
@@ -59,6 +65,9 @@ public class UploadImageActivity extends AppCompatActivity {
 
     private Uri mimguri;
 
+    private FirebaseAuth mAuth;
+
+
 
 
 
@@ -69,6 +78,9 @@ public class UploadImageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload_image);
+
+//        FirebaseUser currentUser = mAuth.getCurrentUser();
+        //updateUI(currentUser);
 
 
         imageView_upload_sepatu=findViewById(R.id.iv_up_sepatu_image);
@@ -83,6 +95,7 @@ public class UploadImageActivity extends AppCompatActivity {
         mstorageref= FirebaseStorage.getInstance().getReference("Uploads");
         mdataref= FirebaseDatabase.getInstance().getReference("Uploads");
 
+        mAuth = FirebaseAuth.getInstance();
 
 
 
@@ -92,6 +105,19 @@ public class UploadImageActivity extends AppCompatActivity {
         button_upload_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//signInAnonymously();
+/*
+                FirebaseUser user = mAuth.getCurrentUser();
+                if (user != null) {
+                    // do your stuff
+                    uploadImage();
+
+                } else {
+                    signInAnonymously();
+                }
+
+ */
+
                 uploadImage();
 
             }
@@ -108,16 +134,13 @@ public class UploadImageActivity extends AppCompatActivity {
         editText_lokasi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String uri = String.format(Locale.ENGLISH, "http://maps.google.com/maps?q=loc:%f,%f");
+                String uri = String.format(Locale.ENGLISH, "http://maps.google.com/maps");
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
                 startActivity(intent);
             }
         });
 
     }
-
-
-
 
 
     // metod dari difren example
@@ -192,7 +215,26 @@ public class UploadImageActivity extends AppCompatActivity {
         }
 
     }
+/*
+    private void signInAnonymously() {
+        mAuth.signInAnonymously().addOnSuccessListener(this, new  OnSuccessListener<AuthResult>() {
+            @Override
+            public void onSuccess(AuthResult authResult) {
+                // do your stuff
+                FirebaseUser user = mAuth.getCurrentUser();
+                if(user != null){
+                    uploadImage();
+                }
+            }
+        })
+                .addOnFailureListener(this, new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                        Log.e(TAG, "signInAnonymously:FAILURE", exception);
+                    }
+                });
+    }
 
-
+ */
 
 }
