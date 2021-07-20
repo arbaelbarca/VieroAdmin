@@ -9,13 +9,13 @@
     tools:context=".view.Login">
 
     <androidx.cardview.widget.CardView
-        android:background="@color/cardview_shadow_start_color"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardElevation="2dp"
+        android:layout_margin="5dp"
+        android:background="@color/cardview_shadow_start_color"
         app:cardCornerRadius="2dp"
-        app:cardUseCompatPadding="true"
-        android:layout_margin="5dp">
+        app:cardElevation="2dp"
+        app:cardUseCompatPadding="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -87,6 +87,7 @@
                         </TextView>
 
                         <EditText
+                            android:id="@+id/edEmailAdmin"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
@@ -109,6 +110,7 @@
                         </TextView>
 
                         <EditText
+                            android:id="@+id/edPasswordAdmin"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
@@ -120,11 +122,11 @@
 
 
                         <Button
-                            android:textColor="#5E5757"
                             android:id="@+id/btn_login"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Login">
+                            android:text="Login"
+                            android:textColor="#5E5757">
 
                         </Button>
                     </LinearLayout>

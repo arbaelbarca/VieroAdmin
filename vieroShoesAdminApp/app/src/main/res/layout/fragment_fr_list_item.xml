@@ -5,29 +5,22 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".view.fragment.FrListItem">
-<!--
-    <LinearLayout
-        android:background="@drawable/home_up"
-        android:layout_width="match_parent"
-        android:layout_height="350dp"
-        android:orientation="vertical">
-
-    </LinearLayout>
-    -->
-
-    <LinearLayout
-        android:layout_margin="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_home_item"
-            android:layout_margin="2dp"
+    <!--
+        <LinearLayout
+            android:background="@drawable/home_up"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="350dp"
+            android:orientation="vertical">
 
-        </androidx.recyclerview.widget.RecyclerView>
+        </LinearLayout>
+        -->
 
-    </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvDataProduk"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="2dp">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
 </LinearLayout>
